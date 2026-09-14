@@ -1,0 +1,44 @@
+# Environment & Secrets (NEVER COMMIT SECRETS)
+.env
+.env.*
+!.env.example
+*.env
+*.env.local
+*.pem
+*.key
+*.cert
+
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Production Build outputs
+dist/
+dist-ssr/
+*.local
+
+# Database files, journals, and local dumps
+prisma/*.db-journal
+prisma/*.db-wal
+prisma/*.db-shm
+backups/
+*.dump
+*.sql.gz
+
+# Logs & monitoring
+logs/
+*.log
+
+# OS & Editor generated files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

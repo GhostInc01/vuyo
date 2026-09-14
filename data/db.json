@@ -1,0 +1,501 @@
+{
+  "merchants": [
+    {
+      "id": "b-avon",
+      "name": "Nomsa's Avon Corner",
+      "owner": "Nomsa Dube",
+      "phone": "+27 82 459 1102",
+      "kind": "brand-agent",
+      "category": "Beauty & Cosmetics",
+      "tagline": "Your Avon rep two streets over. Same-day delivery in Alberton.",
+      "suburb": "Alberton North",
+      "distanceKm": 0.8,
+      "rating": 4.9,
+      "reviewCount": 212,
+      "cover": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=70",
+      "verified": true,
+      "tier": "Featured R250",
+      "openNow": true,
+      "respondsIn": "about 10 min",
+      "brandId": "brand-avon",
+      "boosted": true,
+      "rank": "Diamond",
+      "specialty": "Skincare, fragrance & colour cosmetics",
+      "about": "I have been an independent Avon beauty advisor in Alberton North for over 7 years. I hold popular stock locally for urgent gifts and same-day delivery."
+    },
+    {
+      "id": "b-blossom",
+      "name": "Blossom Wellness Studio",
+      "owner": "Palesa Mokoena",
+      "phone": "+27 83 712 9940",
+      "kind": "brand-agent",
+      "category": "Health & Wellness",
+      "tagline": "Blossom supplements, teas and skincare, straight from your neighbour.",
+      "suburb": "New Redruth",
+      "distanceKm": 1.4,
+      "rating": 4.8,
+      "reviewCount": 167,
+      "cover": "https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&w=900&q=70",
+      "verified": true,
+      "tier": "Growth R120",
+      "openNow": true,
+      "respondsIn": "about 20 min",
+      "brandId": "brand-blossom",
+      "rank": "Platinum",
+      "specialty": "Supplements, teas & wellness plans",
+      "about": "Certified herbal nutrition and holistic wellness consultant. Free consultation for regular buyers."
+    },
+    {
+      "id": "b-plumb",
+      "name": "Mzansi Plumbing Works",
+      "owner": "Sipho Ndlovu",
+      "phone": "+27 71 883 4519",
+      "kind": "service",
+      "category": "Plumbing",
+      "tagline": "Geysers, burst pipes and bathroom fits. 24/7 call-outs.",
+      "suburb": "Alberton CBD",
+      "distanceKm": 2.1,
+      "rating": 4.7,
+      "reviewCount": 89,
+      "cover": "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=900&q=70",
+      "verified": true,
+      "tier": "Starter R50",
+      "openNow": true,
+      "respondsIn": "about 15 min",
+      "specialty": "Geysers, burst pipes, general maintenance",
+      "about": "PIRB registered master plumber with 12 years of hands-on experience in the East Rand."
+    },
+    {
+      "id": "b-spark",
+      "name": "Volt & Spark Electrical",
+      "owner": "Kagiso Molefe",
+      "phone": "+27 84 330 2911",
+      "kind": "service",
+      "category": "Electrical",
+      "tagline": "Certified electrician. COCs, load-shedding backup, new installs.",
+      "suburb": "Meyersdal",
+      "distanceKm": 3.4,
+      "rating": 4.8,
+      "reviewCount": 74,
+      "cover": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=70",
+      "verified": true,
+      "tier": "Featured R250",
+      "openNow": true,
+      "respondsIn": "about 15 min",
+      "specialty": "Solar/inverters, COCs, backup generators",
+      "about": "DOL registered installation electrician. Helping households beat load-shedding with tailored inverter systems."
+    },
+    {
+      "id": "b-bake",
+      "name": "Gogo's Oven Bakery",
+      "owner": "Thabo Sithole",
+      "phone": "+27 79 123 7844",
+      "kind": "goods",
+      "category": "Bakery",
+      "tagline": "Fresh artisanal breads, scones, muffins and celebration cakes baked daily.",
+      "suburb": "Alberton North",
+      "distanceKm": 1.1,
+      "rating": 4.9,
+      "reviewCount": 142,
+      "cover": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=70",
+      "verified": true,
+      "tier": "Growth R120",
+      "openNow": true,
+      "respondsIn": "about 10 min",
+      "specialty": "Sourdough, township scones, pastries",
+      "about": "Family-owned neighborhood bakery. Every morning at 05:00 we fire the ovens with authentic recipes passed down through generations."
+    },
+    {
+      "id": "b-produce",
+      "name": "Mabaso Fresh Produce",
+      "owner": "Lindiwe Mabaso",
+      "phone": "+27 60 994 2213",
+      "kind": "goods",
+      "category": "Fresh Produce",
+      "tagline": "Farm fresh vegetables, fruit crates and organic herbs delivered to your doorstep.",
+      "suburb": "New Redruth",
+      "distanceKm": 1.9,
+      "rating": 4.8,
+      "reviewCount": 96,
+      "cover": "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=70",
+      "verified": true,
+      "tier": "Starter R50",
+      "openNow": true,
+      "respondsIn": "about 20 min",
+      "specialty": "Veggie crates, seasonal fruit, organic herbs",
+      "about": "Direct from smallholder farms in Meyerton and Vaal to Alberton households."
+    }
+  ],
+  "products": [
+    {
+      "id": "p-avon-1",
+      "merchantId": "b-avon",
+      "name": "Far Away Eau de Parfum 50ml",
+      "price": 280,
+      "category": "Fragrance",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=70",
+      "desc": "Top seller. Warm freesia, jasmine and vanilla musk."
+    },
+    {
+      "id": "p-avon-2",
+      "merchantId": "b-avon",
+      "name": "Anew Renewal Activating Serum 30ml",
+      "price": 350,
+      "category": "Skincare",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=70",
+      "desc": "Formulated with Protinol technology to restore 7 signs of aging."
+    },
+    {
+      "id": "p-avon-3",
+      "merchantId": "b-avon",
+      "name": "Ultra Matte Lipstick (Ravishing Rose)",
+      "price": 120,
+      "category": "Cosmetics",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=600&q=70",
+      "desc": "Velvety comfort matte with sesame oil and vitamin E."
+    },
+    {
+      "id": "p-avon-4",
+      "merchantId": "b-avon",
+      "name": "Care Hydrating Body Lotion 400ml",
+      "price": 85,
+      "category": "Body Care",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=70",
+      "desc": "24-hour hydration with avocado oil for dry to extra-dry skin."
+    },
+    {
+      "id": "p-blossom-1",
+      "merchantId": "b-blossom",
+      "name": "Moringa Herbal Cleanse Tea (20 bags)",
+      "price": 95,
+      "category": "Teas",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=70",
+      "desc": "Organic loose-leaf moringa blend for digestive detox and energy."
+    },
+    {
+      "id": "p-blossom-2",
+      "merchantId": "b-blossom",
+      "name": "Daily Vitality Multivitamin (60 capsules)",
+      "price": 210,
+      "category": "Supplements",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=70",
+      "desc": "High potency daily immune and vitamin B-complex support."
+    },
+    {
+      "id": "p-blossom-3",
+      "merchantId": "b-blossom",
+      "name": "Organic Baobab Powder 200g",
+      "price": 160,
+      "category": "Superfoods",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1514733670139-4d87a1941d55?auto=format&fit=crop&w=600&q=70",
+      "desc": "Rich in vitamin C, calcium and prebiotic fiber. Add to smoothies."
+    },
+    {
+      "id": "p-plumb-1",
+      "merchantId": "b-plumb",
+      "name": "Emergency Pipe Leak Call-out & Repair",
+      "price": 450,
+      "category": "Emergency",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=600&q=70",
+      "desc": "Includes callout diagnostic and basic pipe burst clamping within 10km."
+    },
+    {
+      "id": "p-plumb-2",
+      "merchantId": "b-plumb",
+      "name": "Geyser Element & Thermostat Replacement",
+      "price": 850,
+      "category": "Geysers",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=600&q=70",
+      "desc": "Supply and fit 3kW/4kW element with heavy duty safety thermostat."
+    },
+    {
+      "id": "p-plumb-3",
+      "merchantId": "b-plumb",
+      "name": "Blocked Drain High-Pressure Jetting",
+      "price": 600,
+      "category": "Maintenance",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&w=600&q=70",
+      "desc": "Clears exterior sewer or gully blockages quickly without trenching."
+    },
+    {
+      "id": "p-spark-1",
+      "merchantId": "b-spark",
+      "name": "Load-Shedding Inverter Consultation & Sizing",
+      "price": 400,
+      "category": "Solar & Inverter",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=600&q=70",
+      "desc": "On-site assessment of DB board, essential loads, and inverter quote."
+    },
+    {
+      "id": "p-spark-2",
+      "merchantId": "b-spark",
+      "name": "Certificate of Compliance (COC) Inspection",
+      "price": 1200,
+      "category": "Compliance",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=70",
+      "desc": "Official test and legal electrical COC certificate for domestic property sales."
+    },
+    {
+      "id": "p-spark-3",
+      "merchantId": "b-spark",
+      "name": "Surge Protection Module Installation",
+      "price": 850,
+      "category": "Protection",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=70",
+      "desc": "Protects home appliances from load-shedding grid reconnection voltage spikes."
+    },
+    {
+      "id": "p-bake-1",
+      "merchantId": "b-bake",
+      "name": "Warm Township Scones (Dozen / 12 pcs)",
+      "price": 65,
+      "category": "Scones & Pastries",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&w=600&q=70",
+      "desc": "Golden baked sweet butter scones. Perfect with tea and jam."
+    },
+    {
+      "id": "p-bake-2",
+      "merchantId": "b-bake",
+      "name": "Artisanal Farmhouse Sourdough Loaf",
+      "price": 45,
+      "category": "Bread",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=600&q=70",
+      "desc": "Naturally fermented for 24 hours with stoneground wheat flour."
+    },
+    {
+      "id": "p-bake-3",
+      "merchantId": "b-bake",
+      "name": "Custard Cream Doughnuts (Box of 6)",
+      "price": 75,
+      "category": "Pastries",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=600&q=70",
+      "desc": "Hand-rolled glazed doughnuts filled with creamy Madagascar vanilla custard."
+    },
+    {
+      "id": "p-produce-1",
+      "merchantId": "b-produce",
+      "name": "Weekly Family Veggie Hamper (10kg)",
+      "price": 195,
+      "category": "Hampers",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=70",
+      "desc": "Potatoes, onions, carrots, spinach, tomatoes, pumpkin, and green beans."
+    },
+    {
+      "id": "p-produce-2",
+      "merchantId": "b-produce",
+      "name": "Farm Fresh Free-Range Eggs (Tray of 30)",
+      "price": 89,
+      "category": "Dairy & Eggs",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1516448620398-c5f44bf9f441?auto=format&fit=crop&w=600&q=70",
+      "desc": "Large Grade-A eggs collected directly from local free-range pasture farms."
+    },
+    {
+      "id": "p-produce-3",
+      "merchantId": "b-produce",
+      "name": "Seasonal Sweet Citrus Bag (5kg)",
+      "price": 85,
+      "category": "Fruit",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?auto=format&fit=crop&w=600&q=70",
+      "desc": "Juicy Navel oranges and easy-peel naartjies picked at peak ripeness."
+    }
+  ],
+  "orders": [
+    {
+      "id": "LBZ-8684",
+      "placedAt": "Just now",
+      "status": "Placed",
+      "merchantId": "b-avon",
+      "businessName": "Nomsa's Avon Corner",
+      "customer": "Sipho Khumalo",
+      "phone": "+27 82 555 1234",
+      "address": "88 Ring Road, Alberton",
+      "total": 280,
+      "lines": [
+        {
+          "name": "Far Away EDP 50ml",
+          "qty": 1,
+          "price": 280
+        }
+      ]
+    },
+    {
+      "id": "LBZ-9412",
+      "merchantId": "b-avon",
+      "businessName": "Nomsa's Avon Corner",
+      "customer": "Thandiwe Nkosi",
+      "phone": "+27 82 119 4432",
+      "address": "14 Voortrekker Ave, Alberton North",
+      "placedAt": "Today, 09:14",
+      "status": "Out for delivery",
+      "total": 400,
+      "lines": [
+        {
+          "name": "Far Away Eau de Parfum 50ml",
+          "qty": 1,
+          "price": 280
+        },
+        {
+          "name": "Ultra Matte Lipstick",
+          "qty": 1,
+          "price": 120
+        }
+      ]
+    },
+    {
+      "id": "LBZ-8821",
+      "merchantId": "b-bake",
+      "businessName": "Gogo's Oven Bakery",
+      "customer": "Thandiwe Nkosi",
+      "phone": "+27 82 119 4432",
+      "address": "14 Voortrekker Ave, Alberton North",
+      "placedAt": "Yesterday, 16:40",
+      "status": "Delivered",
+      "total": 175,
+      "lines": [
+        {
+          "name": "Warm Township Scones (Dozen)",
+          "qty": 2,
+          "price": 65
+        },
+        {
+          "name": "Artisanal Farmhouse Sourdough Loaf",
+          "qty": 1,
+          "price": 45
+        }
+      ]
+    },
+    {
+      "id": "LBZ-7710",
+      "merchantId": "b-produce",
+      "businessName": "Mabaso Fresh Produce",
+      "customer": "Thandiwe Nkosi",
+      "phone": "+27 82 119 4432",
+      "address": "14 Voortrekker Ave, Alberton North",
+      "placedAt": "Fri 22 Aug, 11:05",
+      "status": "Delivered",
+      "total": 195,
+      "lines": [
+        {
+          "name": "Weekly Family Veggie Hamper (10kg)",
+          "qty": 1,
+          "price": 195
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "m1",
+      "merchantId": "b-avon",
+      "sender": "Thandiwe Nkosi",
+      "senderRole": "customer",
+      "text": "Hi Nomsa! Do you have the Far Away perfume in stock today? Need it for a birthday gift.",
+      "time": "08:45 AM"
+    },
+    {
+      "id": "m2",
+      "merchantId": "b-avon",
+      "sender": "Nomsa Dube",
+      "senderRole": "merchant",
+      "text": "Sawubona Thandiwe! Yes I have 3 bottles in stock. You can place the order on the app and I'll drop it off by lunchtime.",
+      "time": "08:52 AM"
+    }
+  ],
+  "campaigns": [
+    {
+      "id": "c1",
+      "sponsor": "Standard Bank SME Banking",
+      "headline": "Zero monthly fees for your first year, free card machine for LocalBiz sellers.",
+      "cta": "Learn more",
+      "zone": "Nationwide",
+      "status": "Active",
+      "budget": "R12,500/mo",
+      "impressions": 48200,
+      "clicks": 1940,
+      "ctr": "4.02%"
+    },
+    {
+      "id": "c2",
+      "sponsor": "Builders Warehouse Alberton",
+      "headline": "Spring trade discount: 15% off all PIRB plumbing fittings and geysers.",
+      "cta": "View Catalog",
+      "zone": "Alberton & South",
+      "status": "Active",
+      "budget": "R6,800/mo",
+      "impressions": 21900,
+      "clicks": 980,
+      "ctr": "4.47%"
+    }
+  ],
+  "approvals": [
+    {
+      "id": "app-1",
+      "name": "Khumalo Tailors & Alterations",
+      "owner": "Mandla Khumalo",
+      "category": "Fashion & Tailoring",
+      "suburb": "Alberton CBD",
+      "documents": [
+        "National ID Book",
+        "Lease Agreement / Proof of Address"
+      ],
+      "appliedDate": "Today, 08:30",
+      "status": "Pending"
+    },
+    {
+      "id": "app-2",
+      "name": "Phumla's Braai & Shisanyama",
+      "owner": "Phumla Sithole",
+      "category": "Catering & Food",
+      "suburb": "Brackendowns",
+      "documents": [
+        "Certificate of Acceptability for Food Premises",
+        "Director ID"
+      ],
+      "appliedDate": "Yesterday, 14:15",
+      "status": "Pending"
+    },
+    {
+      "id": "app-3",
+      "name": "Mokoena Solar Works",
+      "owner": "Tshepo Mokoena",
+      "category": "Electrical & Solar",
+      "suburb": "Meyersdal",
+      "documents": [
+        "Wireman's License (DOL)",
+        "Public Liability Insurance"
+      ],
+      "appliedDate": "2 days ago",
+      "status": "Pending"
+    }
+  ],
+  "adminSettings": {
+    "commissionEnabled": false,
+    "commissionRate": 5,
+    "minimumSubscription": 50,
+    "platformStats": {
+      "activeSellers": 35040,
+      "monthlySubscriptionsZar": 1752000,
+      "adRevenueZar": 214300,
+      "grossOrdersZar": 4892000
+    }
+  }
+}

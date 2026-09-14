@@ -1,0 +1,543 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id         String   @id @default(cuid())
+  email      String   @unique
+  password   String
+  name       String
+  role       String   @default("consumer") // consumer, business, admin
+  phone      String?
+  avatar     String?
+  status     String   @default("active") // active, suspended
+  merchantId String?
+  createdAt  DateTime @default(now())
+
+  favourites  Favourite[]
+  bookings    Booking[]
+  reviews     Review[]
+  orders      Order[]
+  payments    Payment[]
+  notifications Notification[]
+  conversations Conversation[]
+  messages      Message[]
+  savedLocations UserLocation[]
+
+  @@index([role])
+  @@index([status])
+  @@index([merchantId])
+  @@index([createdAt])
+}
+
+model Merchant {
+  id          String    @id
+  name        String
+  owner       String
+  phone       String
+  kind        String    // brand-agent, service, retail
+  category    String
+  tagline     String
+  suburb      String
+  distanceKm  Float     @default(1.0)
+  rating      Float     @default(5.0)
+  reviewCount Int       @default(0)
+  cover       String
+  gallery     String?   // JSON array of image URLs
+  verified    Boolean   @default(false)
+  status      String    @default("Approved") // Pending, Approved, Suspended
+  tier        String    @default("Starter R50")
+  openNow     Boolean   @default(true)
+  businessHours String? // e.g. Mon-Sat: 08:00 - 17:00
+  openingDays   String?   @default("Mon,Tue,Wed,Thu,Fri,Sat")
+  openingHours  String?   @default("08:00 - 17:00")
+  slotDuration  Int       @default(45)
+  respondsIn  String    @default("about 15 min")
+  brandId     String?
+  boosted     Boolean   @default(false)
+  rank        String?
+  specialty   String
+  about       String
+  email       String?
+  website     String?
+  logo        String?
+  address     String?
+  ownerId     String?
+  tags        String?   // comma-separated search tags e.g. "braids, salon, beauty"
+  latitude    Float?    @default(-26.2625)
+  longitude   Float?    @default(28.1250)
+  province    String?   @default("Gauteng")
+  city        String?   @default("Johannesburg")
+  serviceRadius Float?  @default(10.0)
+  serviceType String?   @default("storefront") // storefront, service_area, hybrid
+  serviceAreas String?  // JSON array string of served suburbs/cities
+  createdAt   DateTime  @default(now())
+
+  products    Product[]
+  orders      Order[]
+  messages    Message[]
+  conversations Conversation[]
+  bookings    Booking[]
+  reviews     Review[]
+  promotions  Promotion[]
+  favourites  Favourite[]
+  payments    Payment[]
+  branches    BusinessLocation[]
+
+  @@index([name])
+  @@index([category])
+  @@index([suburb])
+  @@index([city])
+  @@index([province])
+  @@index([rating])
+  @@index([kind])
+  @@index([openNow])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Product {
+  id         String   @id
+  merchantId String
+  name       String
+  price      Float
+  category   String
+  inStock    Boolean  @default(true)
+  stockCount Int      @default(20)
+  isService  Boolean  @default(false)
+  duration   String?  // e.g. "1 hour", "45 mins" for services
+  image      String
+  desc       String
+  tags       String?  // comma-separated search tags e.g. "perfume, gift, cosmetics"
+  createdAt  DateTime @default(now())
+
+  merchant   Merchant @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  orderItems OrderItem[]
+  bookings   Booking[]
+  favourites Favourite[]
+
+  @@index([name])
+  @@index([merchantId])
+  @@index([category])
+  @@index([isService])
+  @@index([price])
+  @@index([inStock])
+  @@index([createdAt])
+}
+
+model Order {
+  id            String      @id
+  userId        String?
+  merchantId    String
+  businessName  String
+  customer      String
+  phone         String
+  address       String
+  placedAt      String
+  status        String      @default("PENDING") // PENDING, ACCEPTED, REJECTED, PROCESSING, READY, OUT_FOR_DELIVERY, DELIVERED, COMPLETED, CANCELLED
+  total         Float
+  subtotal      Float?
+  deliveryFee   Float?
+  platformFee   Float?
+  discount      Float?
+  deliveryType  String      @default("Delivery") // Delivery, Pickup
+  paymentMethod String      @default("Card on Delivery")
+  paymentStatus String      @default("Pending") // Pending, Paid, Refunded
+  notes         String?
+  createdAt     DateTime    @default(now())
+
+  merchant      Merchant    @relation(fields: [merchantId], references: [id])
+  user          User?       @relation(fields: [userId], references: [id])
+  lines         OrderItem[]
+  payments      Payment[]
+  reviews       Review[]
+
+  @@index([merchantId])
+  @@index([userId])
+  @@index([status])
+  @@index([paymentStatus])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  productId String?
+  name      String
+  qty       Int
+  price     Float
+
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product? @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Booking {
+  id              String    @id @default(cuid())
+  merchantId      String
+  serviceId       String?
+  userId          String?
+  customerName    String
+  phone           String
+  serviceName     String
+  servicePrice    Float
+  duration        String?
+  date            String    // YYYY-MM-DD
+  timeSlot        String    // e.g. "10:00 AM" or "14:00"
+  rescheduledDate String?
+  rescheduledTime String?
+  status          String    @default("PENDING") // PENDING, CONFIRMED, REJECTED, RESCHEDULED, IN_PROGRESS, COMPLETED, CANCELLED, NO_SHOW
+  paymentStatus   String?   @default("PENDING") // PENDING, PROCESSING, SUCCESS, FAILED, REFUNDED, CANCELLED
+  paymentMethod   String?   @default("CARD")
+  notes           String?
+  createdAt       DateTime  @default(now())
+
+  merchant        Merchant  @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  user            User?     @relation(fields: [userId], references: [id])
+  service         Product?  @relation(fields: [serviceId], references: [id])
+  payments        Payment[]
+  reviews         Review[]
+
+  @@index([merchantId, date, timeSlot])
+  @@index([merchantId])
+  @@index([userId])
+  @@index([serviceId])
+  @@index([status])
+  @@index([date])
+  @@index([createdAt])
+}
+
+model Review {
+  id         String    @id @default(cuid())
+  merchantId String
+  userId     String?
+  userName   String
+  orderId    String?
+  bookingId  String?
+  rating     Int       @default(5)
+  comment    String
+  reply      String?
+  repliedAt  DateTime?
+  status     String    @default("Approved") // Approved, Flagged, Hidden
+  createdAt  DateTime  @default(now())
+
+  merchant   Merchant  @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  user       User?     @relation(fields: [userId], references: [id])
+  order      Order?    @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  booking    Booking?  @relation(fields: [bookingId], references: [id], onDelete: SetNull)
+
+  @@index([merchantId])
+  @@index([userId])
+  @@index([orderId])
+  @@index([bookingId])
+  @@index([status])
+  @@index([rating])
+  @@index([createdAt])
+}
+
+model Favourite {
+  id         String   @id @default(cuid())
+  userId     String
+  merchantId String?
+  productId  String?
+  entityType String   @default("business") // business, product, service
+  createdAt  DateTime @default(now())
+
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  merchant   Merchant? @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  product    Product?  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([merchantId])
+  @@index([productId])
+  @@index([entityType])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String?
+  role      String   @default("all") // consumer, business, admin, all
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  type      String   @default("info") // order, booking, payment, review, approval, alert, system
+  link      String?
+  metadata  String?  // JSON encoded details (e.g. orderId, bookingId, paymentId)
+  channel   String   @default("IN_APP") // IN_APP, EMAIL, SMS, PUSH, WHATSAPP
+  createdAt DateTime @default(now())
+
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([role])
+  @@index([read])
+  @@index([createdAt])
+}
+
+model Category {
+  id     String  @id
+  name   String
+  icon   String
+  desc   String
+  active Boolean @default(true)
+
+  @@index([name])
+  @@index([active])
+}
+
+model Promotion {
+  id                 String    @id @default(cuid())
+  merchantId         String
+  name               String    @default("Special Promotion")
+  code               String
+  description        String
+  discountType       String    @default("PERCENTAGE") // PERCENTAGE or FIXED
+  discountValue      Float     @default(10.0)
+  discountPercent    Float     @default(10.0)
+  minSpend           Float     @default(0.0)
+  startDate          DateTime  @default(now())
+  endDate            DateTime?
+  usageLimit         Int?
+  usageCount         Int       @default(0)
+  applicableProducts String?   // JSON array of product IDs or 'all'
+  applicableServices String?   // JSON array of service IDs or 'all'
+  status             String    @default("ACTIVE") // ACTIVE, INACTIVE, EXPIRED
+  active             Boolean   @default(true)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @default(now()) @updatedAt
+
+  merchant           Merchant  @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+
+  @@unique([merchantId, code])
+  @@index([merchantId])
+  @@index([code])
+  @@index([status])
+  @@index([active])
+  @@index([startDate])
+  @@index([endDate])
+}
+
+model AuditLog {
+  id            String   @id @default(cuid())
+  administrator String   @default("System Admin")
+  action        String
+  entity        String   @default("General")
+  entityId      String?
+  details       String
+  createdAt     DateTime @default(now())
+
+  @@index([entity])
+  @@index([createdAt])
+  @@index([administrator])
+}
+
+model Conversation {
+  id                  String   @id @default(cuid())
+  merchantId          String
+  userId              String
+  lastMessage         String?
+  lastMessageAt       DateTime @default(now())
+  unreadCountConsumer Int      @default(0)
+  unreadCountBusiness Int      @default(0)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  merchant            Merchant @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages            Message[]
+
+  @@unique([userId, merchantId])
+  @@index([userId])
+  @@index([merchantId])
+  @@index([lastMessageAt])
+}
+
+model Message {
+  id             String        @id @default(cuid())
+  conversationId String?
+  senderId       String?
+  senderRole     String        // consumer, business, admin
+  sender         String?
+  receiverId     String?
+  merchantId     String
+  text           String
+  time           String?
+  read           Boolean       @default(false)
+  readAt         DateTime?
+  createdAt      DateTime      @default(now())
+
+  conversation   Conversation? @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  merchant       Merchant      @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  senderUser     User?         @relation(fields: [senderId], references: [id], onDelete: SetNull)
+
+  @@index([conversationId])
+  @@index([senderId])
+  @@index([merchantId])
+  @@index([read])
+  @@index([createdAt])
+}
+
+model Campaign {
+  id          String   @id
+  sponsor     String
+  headline    String
+  cta         String
+  zone        String
+  status      String   @default("Active")
+  budget      String
+  impressions Int      @default(0)
+  clicks      Int      @default(0)
+  ctr         String   @default("0.0%")
+  createdAt   DateTime @default(now())
+}
+
+model KycApproval {
+  id          String   @id
+  name        String
+  owner       String
+  category    String
+  suburb      String
+  documents   String
+  appliedDate String
+  status      String   @default("Pending")
+  createdAt   DateTime @default(now())
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model AdminSetting {
+  id                  Int     @id @default(1)
+  commissionEnabled   Boolean @default(false)
+  commissionRate      Float   @default(5.0)
+  minimumSubscription Float   @default(50.0)
+  platformName        String  @default("LocalBiz South Africa")
+  supportEmail        String  @default("support@localbiz.co.za")
+  supportPhone        String  @default("+27 11 907 5500")
+  maintenanceMode     Boolean @default(false)
+  defaultRadius       Float   @default(10.0)
+  radiusOptions       String  @default("1,2,5,10,25,50,100")
+  locationProvider    String  @default("database")
+}
+
+model Payment {
+  id            String    @id @default(cuid())
+  reference     String    @unique
+  orderId       String?
+  bookingId     String?
+  userId        String?
+  merchantId    String?
+  amount        Float
+  currency      String    @default("ZAR")
+  method        String    @default("CARD") // CARD, CASH_ON_DELIVERY, EFT, POS_TERMINAL, WALLET
+  provider      String    @default("mock") // mock, payfast, stripe, ozow
+  status        String    @default("PENDING") // PENDING, PROCESSING, SUCCESS, FAILED, REFUNDED, CANCELLED
+  transactionId String?
+  failureReason String?
+  cardBrand     String?
+  cardLast4     String?
+  metadata      String?
+  paidAt        DateTime?
+  refundedAt    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  order         Order?    @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  booking       Booking?  @relation(fields: [bookingId], references: [id], onDelete: SetNull)
+  user          User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  merchant      Merchant? @relation(fields: [merchantId], references: [id], onDelete: SetNull)
+
+  @@index([merchantId])
+  @@index([userId])
+  @@index([orderId])
+  @@index([bookingId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Location {
+  id               String   @id @default(cuid())
+  country          String   @default("South Africa")
+  countryCode      String   @default("ZA")
+  province         String
+  provinceCode     String?
+  municipality     String
+  city             String
+  suburb           String?
+  postalCode       String?
+  formattedAddress String
+  latitude         Float
+  longitude        Float
+  locationType     String   @default("suburb") // province, municipality, city, town, suburb, locality
+  active           Boolean  @default(true)
+  aliases          String?  // comma-separated search synonyms
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @default(now()) @updatedAt
+
+  @@index([province])
+  @@index([city])
+  @@index([suburb])
+  @@index([locationType])
+  @@index([latitude, longitude])
+  @@index([active])
+}
+
+model BusinessLocation {
+  id               String   @id @default(cuid())
+  merchantId       String
+  name             String   @default("Main Branch")
+  address          String
+  suburb           String?
+  city             String
+  province         String
+  postalCode       String?
+  latitude         Float
+  longitude        Float
+  isPrimary        Boolean  @default(true)
+  locationVerified Boolean  @default(false)
+  serviceRadius    Float?   @default(10.0) // Service area radius in km
+  serviceAreas     String?  // JSON array string of served suburbs/cities
+  operatingHours   String?
+  phone            String?
+  email            String?
+  active           Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @default(now()) @updatedAt
+
+  merchant         Merchant @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+
+  @@index([merchantId])
+  @@index([city])
+  @@index([province])
+  @@index([latitude, longitude])
+  @@index([active])
+}
+
+model UserLocation {
+  id               String   @id @default(cuid())
+  userId           String
+  label            String?  // Home, Work, Family, etc.
+  formattedAddress String
+  suburb           String?
+  city             String
+  province         String
+  latitude         Float
+  longitude        Float
+  locationMode     String   @default("MANUAL_LOCATION") // CURRENT_LOCATION, MANUAL_LOCATION, MAP_LOCATION
+  isDefault        Boolean  @default(false)
+  createdAt        DateTime @default(now())
+
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([isDefault])
+}
+
+

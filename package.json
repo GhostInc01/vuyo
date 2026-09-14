@@ -1,0 +1,33 @@
+{
+  "name": "localbiz-web-platform",
+  "version": "2.0.0",
+  "description": "LocalBiz - Hyperlocal Community Commerce Web Platform",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test --test-concurrency=1 tests/api.test.js tests/validate-sql.js tests/auth.test.js tests/consumer.test.js tests/business.test.js tests/admin.test.js tests/orders.test.js tests/bookings.test.js tests/payments.test.js tests/notifications.test.js tests/reviews.test.js tests/search.test.js tests/favorites.test.js tests/messaging.test.js tests/promotions.test.js tests/analytics.test.js tests/security.test.js tests/location.test.js tests/qa-workflows.test.js",
+    "start": "node server.js",
+    "db:backup": "node scripts/backup-db.js",
+    "db:restore": "node scripts/restore-db.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.3",
+    "lucide-react": "^0.462.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@prisma/client": "5.22.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "prisma": "5.22.0",
+    "tailwindcss": "^3.4.4",
+    "vite": "^5.3.1"
+  }
+}
